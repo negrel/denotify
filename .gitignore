@@ -1,2 +1,7 @@
 .direnv/
 .envrc
+
+vapid.json
+.env
+
+node_modules/
