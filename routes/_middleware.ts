@@ -1,5 +1,5 @@
-import { Handlers } from "$fresh/server.ts";
 import { Config, config } from "@/lib/config.ts";
+import { FreshContext } from "$fresh/server.ts";
 
 export interface State {
   config: Config;
@@ -8,15 +8,14 @@ export interface State {
 
 const kv = await Deno.openKv();
 
-// deno-lint-ignore no-explicit-any
-export const handler: Handlers<any, State> = [
-  function (_req, ctx) {
+export const handler = [
+  function (_req: Request, ctx: FreshContext<State>) {
     ctx.state.config = config;
     ctx.state.kv = kv;
 
     return ctx.next();
   },
-  async function (req, ctx) {
+  async function (req: Request, ctx: FreshContext<State>) {
     const date = new Date();
     const response = await ctx.next();
 

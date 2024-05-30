@@ -7,7 +7,7 @@ export const handler: Handlers<any, State> = {
     const entries = ctx.state.kv.list({ prefix: ["subscriptions", "all"] });
     const subscriptions: PushSubscription[] = [];
     for await (const entry of entries) {
-      subscriptions.push(entry);
+      subscriptions.push(entry.value as PushSubscription);
     }
     return ctx.render({ subscriptions });
   },

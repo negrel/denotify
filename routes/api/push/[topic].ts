@@ -1,6 +1,6 @@
 import { Handlers } from "$fresh/server.ts";
 import { State } from "@/routes/_middleware.ts";
-import { PushMessageError } from "@negrel/webpush";
+import { PushMessageError, PushSubscription } from "@negrel/webpush";
 
 // deno-lint-ignore no-explicit-any
 export const handler: Handlers<any, State> = {
@@ -13,7 +13,7 @@ export const handler: Handlers<any, State> = {
     });
     for await (const entry of entries) {
       const sub = ctx.state.config.applicationServer.subscribe(
-        entry.value,
+        entry.value as PushSubscription,
       );
       try {
         await sub.pushMessage(payload, {});
