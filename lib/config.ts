@@ -1,4 +1,4 @@
-import { ApplicationServer, importVapidKeys } from "../../webpush/mod.ts";
+import { ApplicationServer, importVapidKeys } from "@negrel/webpush";
 
 export interface Config {
   vapidKeys: CryptoKeyPair;

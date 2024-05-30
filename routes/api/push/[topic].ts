@@ -1,6 +1,6 @@
 import { Handlers } from "$fresh/server.ts";
 import { State } from "@/routes/_middleware.ts";
-import { PushMessageError } from "../../../../webpush/mod.ts";
+import { PushMessageError } from "@negrel/webpush";
 
 // deno-lint-ignore no-explicit-any
 export const handler: Handlers<any, State> = {
