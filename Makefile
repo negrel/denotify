@@ -1,25 +1,18 @@
-.PHONY:
-start: .env
-	deno task start
+deno/task/%: node_modules FORCE
+	deno task $*
+
+.PHONY: start
+start: .env deno/task/start
 
 .PHONY: lint
-lint:
-	deno task check
-
-.PHONY: fmt
-fmt:
-	deno fmt
-
-.PHONY: fmt-check
-fmt-check:
-	deno fmt --check
+lint: deno/task/check
 
 .PHONY: test
-test: lint fmt
+test: lint
 	deno test
 
 .PHONY: build
-build:
+build: .env
 	deno task build
 
 .PHONY: .env
@@ -30,6 +23,11 @@ build:
 vapid.json:
 	deno run -A https://raw.githubusercontent.com/negrel/webpush/master/cmd/generate-vapid-keys.ts > vapid.json
 
-.PHONY:
+.PHONY: clean
 clean:
 	rm -f .env vapid.json
+
+node_modules:
+	deno cache **/*.{js,ts,tsx}
+
+FORCE:
