@@ -46,7 +46,7 @@ export async function subscribe() {
     });
 
     // Send subscription to server.
-    const response = await fetch("/api/subscribe", {
+    const response = await fetch("/api/channels/all/subscribers", {
       method: "POST",
       body: JSON.stringify(subscription),
       headers: {

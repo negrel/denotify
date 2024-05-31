@@ -5,8 +5,8 @@
 import * as $_404 from "./routes/_404.tsx";
 import * as $_app from "./routes/_app.tsx";
 import * as $_middleware from "./routes/_middleware.ts";
-import * as $api_push_topic_ from "./routes/api/push/[topic].ts";
-import * as $api_subscribe from "./routes/api/subscribe.ts";
+import * as $api_channels_channel_messages from "./routes/api/channels/[channel]/messages.ts";
+import * as $api_channels_channel_subscribers from "./routes/api/channels/[channel]/subscribers.ts";
 import * as $api_vapid from "./routes/api/vapid.ts";
 import * as $index from "./routes/index.tsx";
 import * as $SubscribeBanner from "./islands/SubscribeBanner.tsx";
@@ -18,8 +18,10 @@ const manifest = {
     "./routes/_404.tsx": $_404,
     "./routes/_app.tsx": $_app,
     "./routes/_middleware.ts": $_middleware,
-    "./routes/api/push/[topic].ts": $api_push_topic_,
-    "./routes/api/subscribe.ts": $api_subscribe,
+    "./routes/api/channels/[channel]/messages.ts":
+      $api_channels_channel_messages,
+    "./routes/api/channels/[channel]/subscribers.ts":
+      $api_channels_channel_subscribers,
     "./routes/api/vapid.ts": $api_vapid,
     "./routes/index.tsx": $index,
   },
