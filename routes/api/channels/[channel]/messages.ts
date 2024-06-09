@@ -7,13 +7,18 @@ import {
   Urgency,
 } from "@negrel/webpush";
 
+const encoder = new TextEncoder();
+
 // deno-lint-ignore no-explicit-any
 export const handler: Handlers<any, State> = {
   async POST(req, ctx) {
-    const payload = await req.arrayBuffer();
+    const payload = await req.json();
     const channel = ctx.params["channel"];
     const hostname = ctx.url.hostname;
     const queryParams = ctx.url.searchParams;
+
+    // Adds channel to payload.
+    payload.channel = channel;
 
     const pushOptions: PushMessageOptions = {};
 
@@ -38,7 +43,10 @@ export const handler: Handlers<any, State> = {
         entry.value as PushSubscription,
       );
       try {
-        await sub.pushMessage(payload, pushOptions);
+        await sub.pushMessage(
+          encoder.encode(JSON.stringify(payload)),
+          pushOptions,
+        );
         subscribersOk++;
       } catch (err) {
         if (err instanceof PushMessageError) {
