@@ -10,15 +10,14 @@ export const handler: Handlers<any, State> = {
     const hostname = ctx.url.hostname;
 
     ctx.state.kv.set(
-      [hostname, "subscriptions", channel, subscription.endpoint],
+      [hostname, "subscriptions", channel, ctx.state.deviceUuid],
       subscription,
     );
 
     return new Response();
   },
 
-  async DELETE(req, ctx) {
-    const subscription: PushSubscription = await req.json();
+  async DELETE(_req, ctx) {
     const channel = ctx.params["channel"];
     const hostname = ctx.url.hostname;
 
@@ -26,7 +25,7 @@ export const handler: Handlers<any, State> = {
       hostname,
       "subscriptions",
       channel,
-      subscription.endpoint,
+      ctx.state.deviceUuid,
     ]);
 
     return new Response();
