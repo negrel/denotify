@@ -4,7 +4,10 @@ import { State } from "@/routes/_middleware.ts";
 // deno-lint-ignore no-explicit-any
 export const handler: Handlers<any, State> = {
   async GET(_req, ctx) {
-    const entries = ctx.state.kv.list({ prefix: ["subscriptions", "all"] });
+    const hostname = ctx.url.hostname;
+    const entries = ctx.state.kv.list({
+      prefix: [hostname, "subscriptions"],
+    });
     const subscriptions: PushSubscription[] = [];
     for await (const entry of entries) {
       subscriptions.push(entry.value as PushSubscription);
