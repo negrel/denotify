@@ -35,6 +35,7 @@ export async function subscribe() {
     "./sw.js",
     {
       scope: "/",
+      type: "module",
     },
   );
 
