@@ -1,13 +1,21 @@
-# `denotify` - Notification server based on [`webpush`](https://github.com/negrel/webpush)
+<h1 align="center">
+    <img height="250" src="https://deno.news/logo.svg">
+</h1>
 
-![deno.news icon](https://deno.news/logo.svg)
+# `denotify` - Deno based notification server.
+
+[![deno fresh badge](https://fresh.deno.dev/fresh-badge.svg)](https://fresh.deno.dev)
+![license MIT badge](https://img.shields.io/github/license/negrel/denotify)
+![code size badge](https://img.shields.io/github/languages/code-size/negrel/denotify)
+
+A notification server and web app based on [`webpush`](https://github.com/negrel/webpush).
 
 ## Contributing
 
-If you want to contribute to `webpush` to add a feature or improve the code
+If you want to contribute to `denotify` to add a feature or improve the code
 contact me at [alexandre@negrel.dev](mailto:alexandre@negrel.dev), open an
-[issue](https://github.com/negrel/webpush/issues) or make a
-[pull request](https://github.com/negrel/webpush/pulls).
+[issue](https://github.com/negrel/denotify/issues) or make a
+[pull request](https://github.com/negrel/denotify/pulls).
 
 ## :stars: Show your support
 
