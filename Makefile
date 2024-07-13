@@ -7,6 +7,9 @@ start: .env deno/task/start
 .PHONY: lint
 lint: deno/task/check
 
+lint/fix:
+	deno fmt
+
 .PHONY: test
 test: lint
 	deno test
