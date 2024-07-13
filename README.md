@@ -8,8 +8,23 @@
 ![license MIT badge](https://img.shields.io/github/license/negrel/denotify)
 ![code size badge](https://img.shields.io/github/languages/code-size/negrel/denotify)
 
-A notification server and web app based on
+A simple notification server and web app based on
 [`webpush`](https://github.com/negrel/webpush).
+
+> NOTE: `denotify` only exists to demonstrate `webpush` usability and serves as
+> an example.
+
+## Features
+
+- REST API
+- Broadcast push messages to **channels**
+- Web app
+
+## Web App
+
+|                        Feed                         |                        Push                         |                          Channels                           |
+| :-------------------------------------------------: | :-------------------------------------------------: | :---------------------------------------------------------: |
+| ![feed tab screenshot](.github/images/feed-tab.png) | ![push tab screenshot](.github/images/push-tab.png) | ![channels tab screenshot](.github/images/channels-tab.png) |
 
 ## Contributing
 
