@@ -13,7 +13,8 @@ const vapidKeys = await importVapidKeys({
 export const config = {
   vapidKeys,
   applicationServer: await ApplicationServer.new({
-    contactInformation: "mailto:alexandre@negrel.dev",
+    contactInformation: "mailto:" +
+      Deno.env.get("DENOTIFY_VAPID_CONTACT_INFORMATION")!,
     vapidKeys,
   }),
 };

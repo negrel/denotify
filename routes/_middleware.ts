@@ -9,7 +9,7 @@ export interface State {
   deviceUuid: string;
 }
 
-const kv = await Deno.openKv("./deno.kv");
+const kv = await Deno.openKv();
 const logger = bunyan.createLogger({ name: "access_log" });
 
 export const handler = [
@@ -34,6 +34,7 @@ export const handler = [
         name: "device_id",
         value: ctx.state.deviceUuid,
         domain: ctx.url.hostname,
+        path: "/",
         httpOnly: true,
         sameSite: "Strict",
         maxAge: Number.MAX_SAFE_INTEGER,

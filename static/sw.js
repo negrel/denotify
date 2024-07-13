@@ -40,13 +40,15 @@ openDb().then((db) => {
 
 self.addEventListener("push", (e) => {
   const data = e.data.json();
-  data.timestamp = Date.now();
   self.registration.showNotification(data.title, data);
 
   if (idb) {
+    data.timestamp = Date.now();
+    data.key = `${data.timestamp}-${data.channel}-${data.title}`;
+
     const tx = idb.transaction(pushMessagesStoreName, "readwrite");
     const objectStore = tx.objectStore(pushMessagesStoreName);
-    objectStoreAdd(objectStore, data, new Date()).catch(console.error);
+    objectStoreAdd(objectStore, data, data.key).catch(console.error);
     commitTx(tx).catch(console.error);
   }
 });

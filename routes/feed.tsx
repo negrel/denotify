@@ -1,9 +1,5 @@
-import Feed from "@/islands/Feed.tsx";
+import FeedPage from "@/islands/FeedPage.tsx";
 
 export default function () {
-  return (
-    <section>
-      <Feed />
-    </section>
-  );
+  return <FeedPage />;
 }
