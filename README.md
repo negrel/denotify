@@ -8,7 +8,8 @@
 ![license MIT badge](https://img.shields.io/github/license/negrel/denotify)
 ![code size badge](https://img.shields.io/github/languages/code-size/negrel/denotify)
 
-A notification server and web app based on [`webpush`](https://github.com/negrel/webpush).
+A notification server and web app based on
+[`webpush`](https://github.com/negrel/webpush).
 
 ## Contributing
 
