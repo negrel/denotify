@@ -1,6 +1,7 @@
 import { Config, config } from "@/lib/config.ts";
 import { FreshContext } from "$fresh/server.ts";
 import { getCookies, setCookie } from "$std/http/cookie.ts";
+import bunyan from "bunyan";
 
 export interface State {
   config: Config;
@@ -8,7 +9,8 @@ export interface State {
   deviceUuid: string;
 }
 
-const kv = await Deno.openKv();
+const kv = await Deno.openKv("./deno.kv");
+const logger = bunyan.createLogger({ name: "access_log" });
 
 export const handler = [
   // Global server state.
@@ -40,19 +42,23 @@ export const handler = [
 
     return resp;
   },
-  // Access logs.
-  async function (req: Request, ctx: FreshContext<State>) {
-    const date = new Date();
-    const response = await ctx.next();
+  async function accessLog(req: Request, ctx: FreshContext) {
+    const start = performance.now();
 
-    console.log(
-      date.toISOString(),
-      req.method,
-      req.url,
-      response.status,
-      ctx.state.deviceUuid,
-    );
+    const ua = req.headers.get("User-Agent");
 
-    return response;
+    const resp = await ctx.next();
+
+    const durationMs = performance.now() - start;
+    logger.info({
+      "duration_ms": durationMs,
+      "user_agent": ua,
+      "path": ctx.url.pathname + "?" + ctx.url.searchParams.toString(),
+      "status": resp.status,
+      "source_ip": ctx.remoteAddr.hostname,
+      "device_id": ctx.state.deviceUuid,
+    }, "request handled");
+
+    return resp;
   },
 ];
