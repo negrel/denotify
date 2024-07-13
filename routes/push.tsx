@@ -53,6 +53,7 @@ export const handler: Handlers<PushData, State> = {
     }, {
       title,
       body: message,
+      channel,
     }, {});
 
     return render(ctx, errors.map((err) => err.toString()));
