@@ -19,7 +19,7 @@ export default function App({ Component }: PageProps) {
         <link rel="preconnect" href="https://rsms.me/" />
         <link rel="stylesheet" href="https://rsms.me/inter/inter.css" />
       </head>
-      <body className="h-screen dark:bg-slate-950 dark:text-slate-50 bg-slate-100 text-black flex portrait:flex-col landscape:flex-row-reverse">
+      <body className="h-dvh dark:bg-slate-950 dark:text-slate-50 bg-slate-100 text-black flex portrait:flex-col landscape:flex-row-reverse">
         <div className="w-full h-full flex flex-col overflow-y-auto">
           <TopBar />
           <Component />
